@@ -6,7 +6,5 @@ export default class Task extends Item{
         this.notes = notes;
     }
 
-    getID = () => {
-        return this.id;
-    }
+
 }

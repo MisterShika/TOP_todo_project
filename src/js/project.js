@@ -6,6 +6,10 @@ export default class Project extends Item{
         this.tasks = [];
     }
 
+    listTasks = () => {
+        return this.tasks;
+    }
+
     addTask = (task) => {
         this.tasks.push(task);
     }
@@ -16,7 +20,5 @@ export default class Project extends Item{
         );
     }
 
-    listTasks = () => {
-        return this.tasks;
-    }
+
 }
