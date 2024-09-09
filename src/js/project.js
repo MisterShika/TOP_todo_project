@@ -4,6 +4,7 @@ export default class Project extends Item{
     constructor({title, dueDate, priority, description}){
         super({title, dueDate, priority, description});
         this.tasks = [];
+        this.itemType = 'project';
     }
 
     listTasks = () => {

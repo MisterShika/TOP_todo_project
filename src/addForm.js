@@ -1,10 +1,15 @@
 import Project from './js/project.js';
 import Task from './js/task.js';
-import {projectList, regenerateProjectList} from './index.js';
+import {projectList, regenerateProjectList, regenerateTaskList} from './index.js';
 
-function generateAddForm () {
+function generateAddForm (projectID) {
     const mainForm = document.createElement('form');
     const priorityField = document.createElement('select');
+        priorityField.id = 'itemPriority';
+        const priorityNone = document.createElement('option');
+            priorityNone.value = 'none';
+            priorityNone.text = '';
+            priorityField.appendChild(priorityNone);
         const priorityLow = document.createElement('option');
             priorityLow.value = 'low';
             priorityLow.text = 'Low';
@@ -19,14 +24,17 @@ function generateAddForm () {
             priorityField.appendChild(priorityHigh);
         priorityField.setAttribute('name', 'itemPriority');
     const itemTitle = document.createElement('input');
+        itemTitle.id = 'itemName';
         itemTitle.setAttribute('type', 'text');
         itemTitle.setAttribute('placeholder', 'Enter Title');
         itemTitle.setAttribute('name', 'itemName');
     const itemDue = document.createElement('input');
+        itemDue.id = 'itemDue';
         itemDue.setAttribute('type', 'text');
         itemDue.setAttribute('placeholder', 'Enter Due Date');
         itemDue.setAttribute('name', 'itemDue');
     const itemDesc = document.createElement('textarea');
+        itemDesc.id = 'itemDesc';
         itemDesc.setAttribute('name', 'itemDesc');
         itemDesc.setAttribute('placeholder', 'Enter Description');
     const itemSubmit = document.createElement('input');
@@ -46,7 +54,7 @@ function generateAddForm () {
         event.preventDefault();
 
         // Use FormData to extract values from the form
-        const formData = new FormData(mainForm);
+        const formData = new FormData(this);
 
         // Get individual values from the form
         const title = formData.get('itemName');
@@ -54,14 +62,36 @@ function generateAddForm () {
         const priority = formData.get('itemPriority');
         const description = formData.get('itemDesc');
 
-        let addedProject = new Project({
-            title: title,
-            dueDate: dueDate,
-            priority: priority,
-            description: description
-        });
-        projectList.addProject(addedProject);
-        regenerateProjectList();
+        this.querySelector('#itemPriority').selectedIndex = 0;
+        this.querySelector('#itemName').value = '';
+        this.querySelector('#itemDue').value = '';
+        this.querySelector('#itemDesc').value = '';
+
+
+
+        if(projectID){
+            let addedTask = new Task({
+                title: title,
+                dueDate: dueDate,
+                priority: priority,
+                description: description
+            });
+            console.log(addedTask.printClassName());
+            projectList.findProject(projectID).addTask(addedTask);
+            regenerateTaskList(projectID);
+        }else{
+            let addedProject = new Project({
+                title: title,
+                dueDate: dueDate,
+                priority: priority,
+                description: description
+            });
+            console.log(addedProject.printClassName());
+            projectList.addProject(addedProject);
+
+            regenerateProjectList();
+        }
+        
     })
 
 

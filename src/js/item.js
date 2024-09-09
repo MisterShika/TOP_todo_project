@@ -10,13 +10,35 @@ export default class Item{
 
         this.id = uuidv4();
         this.complete = false;
+        this.itemType;
     }
 
     markComplete = () => {
         this.complete = true;
     }
 
+    printClassName = () => {
+        return this.itemType;
+    }
+
     getID = () => {
         return this.id;
     }
+
+    getTitle = () => {
+        return this.title;
+    }
+
+    getPriority = () => {
+        return this.priority;
+    }
+
+    getDueDate = () => {
+        return this.dueDate;
+    }
+
+    getDescription = () => {
+        return this.description;
+    }
+
 }

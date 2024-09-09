@@ -17,4 +17,8 @@ export default class ProjectListClass{
         this.projects.splice(index, 1);
     }
 
+    findProject = (projectID) => {
+        return this.projects.find(project => project.id === projectID);
+    }
+
 }
