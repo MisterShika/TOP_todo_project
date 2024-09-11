@@ -15,10 +15,9 @@ export default class Project extends Item{
         this.tasks.push(task);
     }
 
-    removeTask = (task) => {
-        this.tasks = this.tasks.filter(element =>
-            element !== task
-        );
+    removeTask = (taskID) => {
+        const index = this.tasks.findIndex(task => task.id === taskID);
+        this.tasks.splice(index, 1);
     }
 
 

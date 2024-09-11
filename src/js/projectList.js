@@ -2,6 +2,7 @@
 export default class ProjectListClass{
     constructor(){
         this.projects = [];
+        this.currentProject;
     }
 
     listProjects = () => {
@@ -19,6 +20,14 @@ export default class ProjectListClass{
 
     findProject = (projectID) => {
         return this.projects.find(project => project.id === projectID);
+    }
+
+    changeCurrentProject = (projectID) =>{
+        this.currentProject = projectID;
+    }
+
+    getCurrentProject = () => {
+        return this.currentProject;
     }
 
 }
