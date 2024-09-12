@@ -76,7 +76,7 @@ function generateAddForm (projectID) {
                 priority: priority,
                 description: description
             });
-            console.log(addedTask.printClassName());
+            // console.log(addedTask.printClassName());
             projectList.findProject(projectID).addTask(addedTask);
             regenerateTaskList(projectID);
         }else{
@@ -86,7 +86,7 @@ function generateAddForm (projectID) {
                 priority: priority,
                 description: description
             });
-            console.log(addedProject.printClassName());
+            // console.log(addedProject.printClassName());
             projectList.addProject(addedProject);
 
             regenerateProjectList();

@@ -2,8 +2,6 @@ import './style/reset.css';
 import './style/style.css';
 
 import ProjectListClass from './js/projectList.js';
-import Project from './js/project.js';
-import Task from './js/task.js';
 import generateAddForm from './addForm.js';
 
 const controlContainer = document.getElementById('controlContainer');
@@ -51,20 +49,26 @@ export function regenerateTaskList (projectID) {
 function regenerateSingleProject (projectID) {
     projectArea.innerHTML = '';
     if(projectID){
-            const projectBox = document.createElement('div');
-            const theProject = projectList.findProject(projectID);
-            const projectTitle = document.createElement('h2');
-                projectTitle.textContent = theProject.getTitle();
-                projectBox.appendChild(projectTitle);
-            const projectPriority = document.createElement('span');
-                projectPriority.textContent = theProject.getPriority();
-                projectBox.appendChild(projectPriority);
-            const projectDue = document.createElement('span');
-                projectDue.textContent = theProject.getDueDate();
-                projectBox.appendChild(projectDue);
-            const projectDesc = document.createElement('span');
-                projectDesc.textContent = theProject.getDescription();
-                projectBox.appendChild(projectDesc);
+        const projectBox = document.createElement('div');
+        const theProject = projectList.findProject(projectID);
+        const projectTitle = document.createElement('h2');
+            projectTitle.textContent = theProject.getTitle();
+            projectBox.appendChild(projectTitle);
+        const projectPriority = document.createElement('span');
+            projectPriority.textContent = theProject.getPriority();
+            projectBox.appendChild(projectPriority);
+        const projectDue = document.createElement('span');
+            projectDue.textContent = theProject.getDueDate();
+            projectBox.appendChild(projectDue);
+        const projectDesc = document.createElement('span');
+            projectDesc.textContent = theProject.getDescription();
+            projectBox.appendChild(projectDesc);
+        const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.addEventListener('click', function(){
+                console.log('owiajdiawd');
+            });
+            projectBox.appendChild(editButton);
         projectList.changeCurrentProject(projectID);
         projectBox.appendChild(generateAddForm(projectID));
         projectArea.appendChild(projectBox);
