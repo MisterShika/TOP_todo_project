@@ -41,4 +41,20 @@ export default class Item{
         return this.description;
     }
 
+    editTitle = (data) => {
+        this.title = data;
+    }
+
+    editPriority = (data) => {
+        this.priority = data;
+    }
+
+    editDueDate = (data) => {
+        this.dueDate = data;
+    }
+
+    editDescription = (data) => {
+        this.description = data;
+    }
+
 }

@@ -3,6 +3,7 @@ import './style/style.css';
 
 import ProjectListClass from './js/projectList.js';
 import generateAddForm from './addForm.js';
+import generateEditForm from './editform.js';
 
 const controlContainer = document.getElementById('controlContainer');
 controlContainer.appendChild(generateAddForm());
@@ -14,6 +15,8 @@ controlContainer.appendChild(projectBox);
 const projectArea = document.getElementById('projectArea');
 
 const taskArea = document.getElementById('taskArea');
+
+const popUpWindowFormArea = document.getElementById('popUpFormArea');
 
 export const projectList = new ProjectListClass;
 
@@ -41,12 +44,19 @@ export function regenerateTaskList (projectID) {
                         taskDelete(projectID, task.getID());
                     });
                     singleTask.appendChild(deleteButton);
+                let editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.addEventListener('click', function(){
+                        popUpWindowFormArea.innerHTML = '';
+                        popUpWindowFormArea.appendChild(generateEditForm(projectID))
+                    });
+                    singleTask.appendChild(editButton);
                 taskArea.appendChild(singleTask);
         });
     }
 }
 
-function regenerateSingleProject (projectID) {
+export function regenerateSingleProject (projectID) {
     projectArea.innerHTML = '';
     if(projectID){
         const projectBox = document.createElement('div');
@@ -66,7 +76,8 @@ function regenerateSingleProject (projectID) {
         const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.addEventListener('click', function(){
-                console.log('owiajdiawd');
+                popUpWindowFormArea.innerHTML = '';
+                popUpWindowFormArea.appendChild(generateEditForm(projectID))
             });
             projectBox.appendChild(editButton);
         projectList.changeCurrentProject(projectID);
@@ -74,10 +85,6 @@ function regenerateSingleProject (projectID) {
         projectArea.appendChild(projectBox);
     }
 }
-
-// function deleteItem (projectID) {
-
-// }
 
 function taskDelete (projectID, taskID) {
     let searchedProject = projectList.findProject(projectID);
