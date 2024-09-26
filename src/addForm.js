@@ -74,8 +74,10 @@ function generateAddForm (projectID) {
                 title: title,
                 dueDate: dueDate,
                 priority: priority,
-                description: description
+                description: description,
+                parentID: projectID
             });
+            console.log(addedTask);
             // console.log(addedTask.printClassName());
             projectList.findProject(projectID).addTask(addedTask);
             regenerateTaskList(projectID);

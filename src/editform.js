@@ -5,14 +5,19 @@ import {projectList, regenerateProjectList, regenerateTaskList, regenerateSingle
 const popUpWindow = document.getElementById('popUp');
 const popUpWindowFormArea = document.getElementById('popUpFormArea');
 
-function generateEditForm (itemID) {
+function generateEditForm (projectID, taskID) {
 
     popUpWindow.classList.remove('hidePop');
 
-    let editItem = projectList.findProject(itemID)
-    
-    console.log(editItem.getTitle());
+    let editItem;
 
+    if(taskID){
+        let parentProject = projectList.findProject(projectID);
+        editItem = parentProject.getTask(taskID);
+    }else{
+        editItem = projectList.findProject(projectID);
+    }
+    
     const editForm = document.createElement('form');
     const priorityField = document.createElement('select');
         priorityField.id = 'itemPriority';
@@ -78,9 +83,9 @@ function generateEditForm (itemID) {
         editItem.editDueDate(dueDate);
         editItem.editDescription(description);
 
-        regenerateProjectList(editItem.getID());
-        regenerateSingleProject(editItem.getID());
-        regenerateTaskList(editItem.getID());
+        regenerateProjectList();
+        regenerateSingleProject(projectID);
+        regenerateTaskList(projectID);
         popUpWindow.classList.add('hidePop');
     });
 

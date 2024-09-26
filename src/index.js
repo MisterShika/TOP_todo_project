@@ -48,7 +48,7 @@ export function regenerateTaskList (projectID) {
                     editButton.textContent = 'Edit';
                     editButton.addEventListener('click', function(){
                         popUpWindowFormArea.innerHTML = '';
-                        popUpWindowFormArea.appendChild(generateEditForm(projectID))
+                        popUpWindowFormArea.appendChild(generateEditForm(projectID, task.getID()))
                     });
                     singleTask.appendChild(editButton);
                 taskArea.appendChild(singleTask);

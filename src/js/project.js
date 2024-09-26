@@ -20,5 +20,9 @@ export default class Project extends Item{
         this.tasks.splice(index, 1);
     }
 
+    getTask = (taskID) => {
+        return this.tasks.find(task => task.id === taskID);
+    }
+
 
 }
