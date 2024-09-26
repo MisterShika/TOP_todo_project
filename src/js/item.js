@@ -1,5 +1,10 @@
 const { v4: uuidv4 } = require('uuid');
 
+// Item class which is extended to projects and tasks.
+// Some functions are not used in this application, but are still here
+// because I see value in them if I need to add or debug something in
+// the future.
+
 export default class Item{
     constructor({title, dueDate, priority, description}){
         this.title = title;

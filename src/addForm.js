@@ -47,7 +47,7 @@ function generateAddForm (projectID) {
     mainForm.appendChild(itemDesc);
     mainForm.appendChild(itemSubmit);
 
-    mainForm.classList.add('addForm');
+    mainForm.classList.add('addForm', 'defaultForm');
 
 
     mainForm.addEventListener('submit', function (event) {
@@ -67,8 +67,8 @@ function generateAddForm (projectID) {
         this.querySelector('#itemDue').value = '';
         this.querySelector('#itemDesc').value = '';
 
-
-
+        // If a projectID exists in this form, then it's a task, and it
+        // needs to be added to the array of projectID
         if(projectID){
             let addedTask = new Task({
                 title: title,
@@ -77,10 +77,9 @@ function generateAddForm (projectID) {
                 description: description,
                 parentID: projectID
             });
-            console.log(addedTask);
-            // console.log(addedTask.printClassName());
             projectList.findProject(projectID).addTask(addedTask);
             regenerateTaskList(projectID);
+        // Otherwise it's a project and just add it to the list.
         }else{
             let addedProject = new Project({
                 title: title,
@@ -88,9 +87,7 @@ function generateAddForm (projectID) {
                 priority: priority,
                 description: description
             });
-            // console.log(addedProject.printClassName());
             projectList.addProject(addedProject);
-
             regenerateProjectList();
         }
         

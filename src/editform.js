@@ -1,16 +1,17 @@
-import Project from './js/project.js';
-import Task from './js/task.js';
 import {projectList, regenerateProjectList, regenerateTaskList, regenerateSingleProject} from './index.js';
 
 const popUpWindow = document.getElementById('popUp');
-const popUpWindowFormArea = document.getElementById('popUpFormArea');
+// const popUpWindowFormArea = document.getElementById('popUpFormArea');
 
 function generateEditForm (projectID, taskID) {
 
+    // Display popup window by removing class that hides it
     popUpWindow.classList.remove('hidePop');
 
     let editItem;
 
+    // If edit form was given a taskID, find task via
+    // its associated projectID, otherwise just grab the project
     if(taskID){
         let parentProject = projectList.findProject(projectID);
         editItem = parentProject.getTask(taskID);
@@ -56,7 +57,8 @@ function generateEditForm (projectID, taskID) {
         itemSubmit.setAttribute('type', 'submit');
         itemSubmit.setAttribute('value', 'Submit');
 
-
+    // Form values are retrieved from the object and displayed
+    // in order to be edited
     priorityField.value = editItem.getPriority();
     itemTitle.value = editItem.getTitle();
     itemDue.value = editItem.getDueDate();
@@ -83,13 +85,16 @@ function generateEditForm (projectID, taskID) {
         editItem.editDueDate(dueDate);
         editItem.editDescription(description);
 
+        // After editing, regenerate project list, as well as the single
+        // project and task list that was associated with the given projectID
+        // and then close the popup window by re-adding the hide class.
         regenerateProjectList();
         regenerateSingleProject(projectID);
         regenerateTaskList(projectID);
         popUpWindow.classList.add('hidePop');
     });
 
-    editForm.classList.add('editForm');
+    editForm.classList.add('editForm', 'defaultForm');
 
     return editForm;
 
