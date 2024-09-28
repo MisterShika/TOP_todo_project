@@ -20,6 +20,9 @@ function generateEditForm (projectID, taskID) {
     }
     
     const editForm = document.createElement('form');
+    const priorityLabel = document.createElement('label');
+        priorityLabel.htmlFor = 'itemPriority';
+        priorityLabel.innerText = 'Priority: '; 
     const priorityField = document.createElement('select');
         priorityField.id = 'itemPriority';
         const priorityNone = document.createElement('option');
@@ -39,16 +42,25 @@ function generateEditForm (projectID, taskID) {
             priorityHigh.text = 'High';
             priorityField.appendChild(priorityHigh);
         priorityField.setAttribute('name', 'itemPriority');
+    const itemTitleLabel = document.createElement('label');
+        itemTitleLabel.htmlFor = 'itemName';
+        itemTitleLabel.innerText = 'Name: '; 
     const itemTitle = document.createElement('input');
         itemTitle.id = 'itemName';
         itemTitle.setAttribute('type', 'text');
         itemTitle.setAttribute('placeholder', 'Enter Title');
         itemTitle.setAttribute('name', 'itemName');
+    const itemDueLabel = document.createElement('label');
+        itemDueLabel.htmlFor = 'itemDue';
+        itemDueLabel.innerText = 'Due By: '; 
     const itemDue = document.createElement('input');
         itemDue.id = 'itemDue';
         itemDue.setAttribute('type', 'text');
         itemDue.setAttribute('placeholder', 'Enter Due Date');
         itemDue.setAttribute('name', 'itemDue');
+    const itemDescLabel = document.createElement('label');
+        itemDescLabel.htmlFor = 'itemDesc';
+        itemDescLabel.innerText = 'Description: '; 
     const itemDesc = document.createElement('textarea');
         itemDesc.id = 'itemDesc';
         itemDesc.setAttribute('name', 'itemDesc');
@@ -64,9 +76,13 @@ function generateEditForm (projectID, taskID) {
     itemDue.value = editItem.getDueDate();
     itemDesc.value = editItem.getDescription();
 
+    editForm.appendChild(priorityLabel);
     editForm.appendChild(priorityField);
+    editForm.appendChild(itemTitleLabel);
     editForm.appendChild(itemTitle);
+    editForm.appendChild(itemDueLabel);
     editForm.appendChild(itemDue);
+    editForm.appendChild(itemDescLabel);
     editForm.appendChild(itemDesc);
     editForm.appendChild(itemSubmit);
 

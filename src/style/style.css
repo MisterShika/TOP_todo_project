@@ -12,11 +12,68 @@ html, body, #mainContainer, #content{
 
 */
 
+/** Generic Styling **/
+
+#content>div{
+    min-height: 100%;
+    padding-top: 15px;
+    box-sizing: border-box;
+}
+.projectBox{
+    position: relative;
+    width: 300px;
+    margin: 25px auto;
+    padding: 30px 15px;
+    background: white;
+    position: relative;
+    background: linear-gradient(-150deg, transparent 1.5em, rgb(238, 238, 238) 0);
+    border-radius: .5em;
+}
+.projectBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(to left bottom, transparent 50%, rgba(0,0,0,.2) 0, rgba(0,0,0,.4)) no-repeat 100% 0;
+    width: 1.73em;
+    height: 3em;
+    transform: translateY(-1.3em) rotate(-30deg);
+    transform-origin: bottom right;
+    border-bottom-left-radius: inherit;
+    box-shadow: -.2em .2em .3em -.1em rgba(0,0,0,.15);
+}
+.projectID{
+    border-top: 1px solid black;
+    margin: 10px 0;
+    padding-top: 10px;
+    align-items: center;
+}
+.projectID:hover span{
+    text-decoration: underline;
+}
+.projectID span{
+    font-family: sans-serif;
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+.projectID:first-child{
+    border-top: none;
+}
+.projectID button{
+    height: min-content;
+}
+
 
 /** Form Layout **/
 .defaultForm{
     width: 300px;
-    padding: 30px;
+    margin: 0 auto;
+    padding: 10px 30px;
+    background: white;
+    border-radius: 25px;
+    -webkit-box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.75);
 }
 .defaultForm>*{
     display: flex;
@@ -24,26 +81,146 @@ html, body, #mainContainer, #content{
     border: 0;
     padding: 0;
     margin: 0 0 15px;
-    outline: 1px solid black;
+    
 }
+#controlContainer label{
+    color: #687f3d;
+}
+#projectArea label{
+    color: #488583;
+}
+.defaultForm label{
+    font-family: sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.defaultForm textarea,
+.defaultForm input,
+.defaultForm select{
+    outline: 1px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+
+/** Form Buttons **/
+.defaultForm input[type="submit"]{
+    border-radius:6px;
+    display:inline-block;
+	cursor:pointer;
+    color:#ffffff;
+	font-size: 1.25rem;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.defaultForm input[type="submit"]:active {
+	position:relative;
+	top:1px;
+}
+#controlContainer .defaultForm input[type="submit"] {
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color:#89c403;
+	border:1px solid #74b807;
+	text-shadow:0px 1px 0px #528009;
+}
+#controlContainer .defaultForm input[type="submit"]:hover {
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	background-color:#77a809;
+}
+#projectArea .defaultForm input[type="submit"] {
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	background-color:#79bbff;
+	border:1px solid #84bbf3;
+	text-shadow:0px 1px 0px #528ecc;
+}
+#projectArea .defaultForm input[type="submit"]:hover {
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	background-color:#378de5;
+}
+#popUpFormArea .defaultForm input[type="submit"] {
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+	background-color:#ffc477;
+	border:1px solid #eeb44f;
+	text-shadow:0px 1px 0px #cc9f52;
+}
+#popUpFormArea .defaultForm input[type="submit"]:hover {
+	background:linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+	background-color:#fb9e25;
+}
+
+/** Selector Tabs **/
+
 
 /** Primary Tabs Mobile **/
+@media (max-width: 1199px) {
+    header{
+        display: flex;
+        height: 50px;
+        padding-top: 15px;
+    }
+    header .tabButton{
+        flex: 1;
+        cursor: pointer;
+        margin: 0 5px;
+        border-radius: 10px 10px 0 0;
+        border: 1px solid black;
+        border-bottom: none;
+        margin-bottom: -1px;
+    }
+    header .currentTab{
+        z-index: 5;
+    }
+    header #controlButtonArea{
+        background: #a1c65d;
+    }
+    header #projectButtonArea{
+        background: #5da8a6;
+    }
+    header #taskButtonArea{
+        background: #b5d1e8;
+    }
+    #mainContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    #content{
+        border-top: 1px solid black;
+    }
+    #content>div{
+        display: none;
+    }
+    #content>.currentBlock{
+        display: block;
+    }
+}
 
 /** Primary Tabs Wide**/
-#content{
-    display:flex;
+@media (min-width: 1200px) {
+    header{
+        display: none;
+    }
+    #content{
+        display:flex;
+    }
+    #content>*{
+        flex: 1;
+        overflow-y: scroll;
+    }
 }
-#content>*{
-    flex: 1;
-    overflow-y: scroll;
-}
+
 
 /** Project List Tab **/
 #controlContainer{
     background: #a1c65d;
 }
 #controlContainer .projectID{
+    display: flex;
     cursor: pointer;
+    justify-content: space-between;
 }
 
 /** Single Project Tab **/

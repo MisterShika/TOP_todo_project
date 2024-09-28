@@ -4,6 +4,9 @@ import {projectList, regenerateProjectList, regenerateTaskList} from './index.js
 
 function generateAddForm (projectID) {
     const mainForm = document.createElement('form');
+    const priorityLabel = document.createElement('label');
+        priorityLabel.htmlFor = 'itemPriority';
+        priorityLabel.innerText = 'Priority: '; 
     const priorityField = document.createElement('select');
         priorityField.id = 'itemPriority';
         const priorityNone = document.createElement('option');
@@ -23,16 +26,25 @@ function generateAddForm (projectID) {
             priorityHigh.text = 'High';
             priorityField.appendChild(priorityHigh);
         priorityField.setAttribute('name', 'itemPriority');
+    const itemTitleLabel = document.createElement('label');
+        itemTitleLabel.htmlFor = 'itemName';
+        itemTitleLabel.innerText = 'Name: '; 
     const itemTitle = document.createElement('input');
         itemTitle.id = 'itemName';
         itemTitle.setAttribute('type', 'text');
         itemTitle.setAttribute('placeholder', 'Enter Title');
         itemTitle.setAttribute('name', 'itemName');
+    const itemDueLabel = document.createElement('label');
+        itemDueLabel.htmlFor = 'itemDue';
+        itemDueLabel.innerText = 'Due By: '; 
     const itemDue = document.createElement('input');
         itemDue.id = 'itemDue';
         itemDue.setAttribute('type', 'text');
         itemDue.setAttribute('placeholder', 'Enter Due Date');
         itemDue.setAttribute('name', 'itemDue');
+    const itemDescLabel = document.createElement('label');
+        itemDescLabel.htmlFor = 'itemDesc';
+        itemDescLabel.innerText = 'Description: '; 
     const itemDesc = document.createElement('textarea');
         itemDesc.id = 'itemDesc';
         itemDesc.setAttribute('name', 'itemDesc');
@@ -41,9 +53,13 @@ function generateAddForm (projectID) {
         itemSubmit.setAttribute('type', 'submit');
         itemSubmit.setAttribute('value', 'Submit');
 
+    mainForm.appendChild(priorityLabel);
     mainForm.appendChild(priorityField);
+    mainForm.appendChild(itemTitleLabel);
     mainForm.appendChild(itemTitle);
+    mainForm.appendChild(itemDueLabel);
     mainForm.appendChild(itemDue);
+    mainForm.appendChild(itemDescLabel);
     mainForm.appendChild(itemDesc);
     mainForm.appendChild(itemSubmit);
 

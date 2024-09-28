@@ -1,6 +1,8 @@
 import './style/reset.css';
 import './style/style.css';
 
+import './tabSwitcher.js';
+
 import ProjectListClass from './js/projectList.js';
 import generateAddForm from './addForm.js';
 import generateEditForm from './editform.js';
@@ -10,6 +12,7 @@ const controlContainer = document.getElementById('controlContainer');
 controlContainer.appendChild(generateAddForm());
 
 const projectBox = document.createElement('div');
+projectBox.classList.add('projectBox');
 controlContainer.appendChild(projectBox);
 
 const projectArea = document.getElementById('projectArea');
@@ -84,10 +87,10 @@ export function regenerateSingleProject (projectID) {
                 popUpWindowFormArea.appendChild(generateEditForm(projectID))
             });
             projectBox.appendChild(editButton);
-        // Current project is switched to the one being displayed
-        projectList.changeCurrentProject(projectID);
         // Form to add tasks is also added
         projectBox.appendChild(generateAddForm(projectID));
+        // Current project is switched to the one being displayed
+        projectList.changeCurrentProject(projectID);
         projectArea.appendChild(projectBox);
     }
 }
