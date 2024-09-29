@@ -13,7 +13,6 @@ html, body, #mainContainer, #content{
 */
 
 /** Generic Styling **/
-
 #content>div{
     min-height: 100%;
     padding-top: 15px;
@@ -159,7 +158,7 @@ html, body, #mainContainer, #content{
 @media (max-width: 1199px) {
     header{
         display: flex;
-        height: 50px;
+        min-height: 50px;
         padding-top: 15px;
     }
     header .tabButton{
@@ -170,6 +169,11 @@ html, body, #mainContainer, #content{
         border: 1px solid black;
         border-bottom: none;
         margin-bottom: -1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        font-size: 1.65rem;
     }
     header .currentTab{
         z-index: 5;
@@ -227,9 +231,56 @@ html, body, #mainContainer, #content{
 #projectArea{
     background: #5da8a6;
 }
+.projectHolder{
+    width: 300px;
+    margin: 25px auto;
+}
+.projectHolder h2{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+}
+.projectHolder span{
+    display: block;
+    font-family: sans-serif;
+    margin: 10px 0;
+    line-height: 1.25rem;
+}
+.projectHolder button{
+    margin: 0 auto;
+}
+
 /** Tasks Tab **/
 #taskArea{
+    display: flex;
     background: #b5d1e8;
+    padding: 20px;
+}
+#taskArea>div{
+    max-width: 160px;
+    margin: 10px;
+    background: wheat;
+    border: 1px solid black;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    height: min-content;
+}
+#taskArea>div>h3{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.45rem;
+}
+#taskArea>div>div{
+    display: flex;
+    justify-content: space-around;
+}
+#taskArea>div>h3,
+#taskArea>div>span,
+#taskArea>div>div{
+    display: block;
+    margin: 10px 0;
 }
 
 /** Edit PopUp **/
@@ -239,6 +290,16 @@ html, body, #mainContainer, #content{
     height: 100%;
     top: 0; left: 0;
     background: #f8e16d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(0deg 0% 0% / 76%);
+}
+#popUpFormArea{
+    border-radius: 15px;
+    background: #f8e16d;
+    min-width: 360px;
+    padding: 80px;
 }
 #popUp.hidePop{
     display: none;

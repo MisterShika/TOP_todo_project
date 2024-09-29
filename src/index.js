@@ -41,13 +41,15 @@ export function regenerateTaskList (projectID) {
                 let taskDesc = document.createElement('span');
                     taskDesc.innerHTML = task.getDescription();
                     singleTask.appendChild(taskDesc);
+                let buttonDiv = document.createElement('div');
                 let deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Delete';
                     deleteButton.addEventListener('click', function(){
                         // Task is removed from project object's task array
                         taskDelete(projectID, task.getID());
                     });
-                    singleTask.appendChild(deleteButton);
+                    buttonDiv.appendChild(deleteButton);
+                
                 let editButton = document.createElement('button');
                     editButton.textContent = 'Edit';
                     editButton.addEventListener('click', function(){
@@ -56,7 +58,8 @@ export function regenerateTaskList (projectID) {
                         popUpWindowFormArea.innerHTML = '';
                         popUpWindowFormArea.appendChild(generateEditForm(projectID, task.getID()))
                     });
-                    singleTask.appendChild(editButton);
+                    buttonDiv.appendChild(editButton);
+                    singleTask.appendChild(buttonDiv);
                 taskArea.appendChild(singleTask);
         });
     }
@@ -67,26 +70,29 @@ export function regenerateSingleProject (projectID) {
     projectArea.innerHTML = '';
     if(projectID){
         const projectBox = document.createElement('div');
+        const projectHolder = document.createElement('div');
+            projectHolder.classList.add('projectHolder');
         const theProject = projectList.findProject(projectID);
         const projectTitle = document.createElement('h2');
             projectTitle.textContent = theProject.getTitle();
-            projectBox.appendChild(projectTitle);
+            projectHolder.appendChild(projectTitle);
         const projectPriority = document.createElement('span');
             projectPriority.textContent = theProject.getPriority();
-            projectBox.appendChild(projectPriority);
+            projectHolder.appendChild(projectPriority);
         const projectDue = document.createElement('span');
             projectDue.textContent = theProject.getDueDate();
-            projectBox.appendChild(projectDue);
+            projectHolder.appendChild(projectDue);
         const projectDesc = document.createElement('span');
             projectDesc.textContent = theProject.getDescription();
-            projectBox.appendChild(projectDesc);
+            projectHolder.appendChild(projectDesc);
         const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.addEventListener('click', function(){
                 popUpWindowFormArea.innerHTML = '';
                 popUpWindowFormArea.appendChild(generateEditForm(projectID))
             });
-            projectBox.appendChild(editButton);
+            projectHolder.appendChild(editButton);
+        projectBox.appendChild(projectHolder);
         // Form to add tasks is also added
         projectBox.appendChild(generateAddForm(projectID));
         // Current project is switched to the one being displayed
